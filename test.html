@@ -1,0 +1,284 @@
+<!doctype html>
+<!--
+  Polymer 2 Fabric Edit
+  Copyright: (c) 2016 Thinker Works
+  Author: Ralph Porter
+  Licence: MIT
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="bower_components/web-component-tester/browser.js"></script>
+
+    <link rel="import" href="polymer-2-fabric-edit.html" />
+  </head>
+  <body>
+
+    <test-fixture id="polymer-2-fabric-edit-fixture">
+        <template>
+            <polymer-2-fabric-edit canvas-width="300" canvas-height="300" canvas-border-color="blue"></polymer-2-fabric-edit>
+        </template>
+    </test-fixture>
+
+    <script>
+      //var el = document.querySelector('polymer-2-fabric-edit');
+
+      suite('<polymer-2-fabric-eidt>', function() {
+          var el;
+
+          setup(function() {
+              el = fixture('polymer-2-fabric-edit-fixture');
+          });
+
+          /* initilization methods
+            is()
+            config()
+            constructor()
+            connectedCallback()
+            ready()
+        */
+
+        /* event handlers and helper
+            handleChange(e)
+            handleKeyUp(e)
+            handleClick(e)
+            loadDropedFile(e)
+            loadDropedBackgroundFile(e)
+            loadDropedCanvasFile(e)
+            loadSelectedFile(e)
+            loadCanvasFile(e)
+            loadBackgroundFile(e)
+            loadDropedBrushTextureFile(e)
+            loadBrushTextureFile(e)
+            downloadCanvas(e)
+            preventEventDefault(e)
+        */
+
+        test('load drawing modes', function() {
+            /* the following methods are called by tested methods
+                clearView()
+                showMenu(menu);
+                toggleCssClass(element, cls)
+                toggleActive(id, value)
+                setActive(id, value)
+            */
+            el.loadTextView();
+            assert.equal(el.selectedMenu, 'text');
+            el.loadShapeView();
+            assert.equal(el.selectedMenu, 'shape');
+            el.loadFileView();
+            assert.equal(el.selectedMenu, 'file');
+            el.loadDrawView();
+            assert.equal(el.selectedMenu, 'draw');
+            el.loadControlView();
+            assert.equal(el.selectedMenu, 'control');
+        });
+
+        test('property changes', function() {
+            /* the following metods are called by tested methods
+                selectedContains(property)
+                setProperty(property, value)
+                changeSelected(property, newValue, oldValue)
+                changeSelectedShadow(property, newValue, oldValue)
+                changeTextDecoration(property, newValue, oldValue)
+                changeBrushProperty(property, newValue, oldValue)
+                changeBrushShadowProperty(property, newValue, oldValue)
+                drawingToolChange(newValue, oldValue)
+                strokeDashArrayChange(newValue,oldValue);
+                setBrushTextureFile(file);
+            */
+            el.canvasBackgroundColorChange("#eeeeee", el.canvas.backgroundColor);
+            assert.equal(el.canvas.backgroundColor, "#eeeeee");
+            el.loadDrawView();
+            var brush = el.canvas.freeDrawingBrush
+            el.brushWidthChange(3, brush.width);
+            assert.equal(brush.width, 3);
+            el.brushOpacityChange(0.5, brush.opacity);
+            assert.equal(brush.opacity, 0.5);
+            el.brushDensityChange(0.5, brush.density);
+            assert.equal(brush.density, 0.5);
+            el.brushDotWidthChange(2, brush.dotWidth);
+            assert.equal(brush.dotWidth, 2);
+            el.brushDotWidthVarianceChange(3, brush.dotWidthVariance);
+            assert.equal(brush.dotWidthVariance, 3);
+            el.brushDotWidthDensityChange(3, brush.dotWidthDensity);
+            assert.equal(brush.dotWidthDensity, 3);
+            el.brushColorChange("#123456", brush.color);
+            assert.equal(brush.color, "#123456");
+            if(brush.shadow == null) {
+                brush.shadow = new fabric.Shadow();
+            }
+            el.brushShadowColorChange("#654123", brush.shadow.color);
+            assert.equal(brush.shadow.color, "#654123");
+            el.brushShadowBlurChange(5, brush.shadow.blur);
+            assert.equal(brush.shadow.blur, 5);
+            el.brushShadowOffsetXChange(10, brush.shadow.offsetX);
+            assert.equal(brush.shadow.offsetX, 10);
+            el.brushShadowOffsetYChange(-10, brush.shadow.offsetY);
+            assert.equal(brush.shadow.offsetY, -10);
+            // toDo el.brushTextureChange("sky", null);
+            //asert.equal(brush.source, "sky");
+
+            el.loadTextView();
+            var text = new fabric.IText("Test Text", {});
+            el.canvas.add(text);
+            el.canvas.centerObject(text);
+            el.canvas.renderAll();
+            text.setCoords();
+            el.canvas.setActiveObject(text);
+            el.textChange("Changed", "Test Text");
+            assert.equal(text.getText(), "Changed");
+            el.fontFamilyChange("Courier", text.FontFamily);
+            assert.equal(text.fontFamily, "Courier");
+            el.fillChange("blue", text.fill);
+            assert.equal(text.fill, "blue");
+            el.strokeChange("orange", text.stroke);
+            assert.equal(text.stroke, "orange");
+            el.textAlignChange("center", text.textAlign);
+            assert.equal(text.textAlign, "center");
+            el.boldChange(true, false);
+            assert.equal(text.fontWeight, "bold");
+            el.fontWeightChange("normal", text.fontWeight);
+            assert.equal(text.fontWeight, "normal");
+            el.italicChange(true, false);
+            assert.equal(text.fontStyle,"italic");
+            el.fontStyleChange("normal", text.fontStyle);
+            assert.equal(text.fontStyle, "normal");
+            el.underlineChange(true, false);
+            assert.equal(text.textDecoration, "underline");
+            el.linethroughChange(true, false);
+            assert.equal(text.textDecoration, "underline line-through");
+            el.overlineChange(true, false);
+            assert.equal(text.textDecoration, "underline line-through overline");
+            el.textDecorationChange("", text.textDecoration);
+            assert.equal(text.textDecoration, "");
+            el.backgroundColorChange("#336600", text.backgroundColor);
+            assert.equal(text.backgroundColor, "#336600");
+            el.textBackgroundColorChange("#00ddcc", text.textBackgroundColor);
+            assert.equal(text.textBackgroundColor, "#00ddcc");
+            el.fontSizeChange(15, text.fontSize);
+            assert.equal(text.fontSize, 15);
+            el.lineHeightChange(19, text.lineHeight);
+            assert.equal(text.lineHeight, 19);
+            el.charSpacingChange(1.1, text.charSpacing);
+            assert.equal(text.charSpacing, 1.1);
+            el.strokeWidthChange(1.5, text.strokeWidth);
+            assert.equal(text.strokeWidth, 1.5)
+            el.shadowChange(new fabric.Shadow(), text.shadow);
+            el.shadowColorChange("#445566", text.shadow.color);
+            assert.equal(text.shadow.color, "#445566");
+            el.shadowBlurChange(10, text.shadow.blur);
+            assert.equal(text.shadow.blur, 10);
+            el.shadowOffsetXChange(-20, text.shadow.offsetX);
+            assert.equal(text.shadow.offsetX, -20);
+            el.shadowOffsetYChange(20, text.shadow.offsetY);
+            assert.equal(text.shadow.offsetY, 20);
+            el.angleChange(45, text.angle);
+            assert.equal(text.angle, 45);
+            el.leftChange(100, text.left);
+            assert.equal(text.left, 100);
+            el.widthChange(50, text.width);
+            assert.equal(text.width, 50);
+            el.heightChange(20, text.height);
+            assert.equal(text.height, 20);
+            el.scaleXChange(1.5, text.scaleX);
+            assert.equal(text.scaleX, 1.5);
+            el.scaleYChange(1.5, text.scaleY);
+            assert.equal(text.scaleY, 1.5);
+            el.flipXChange(true, text.flipX);
+            assert.equal(text.flipX, true);
+            el.flipYChange(true, text.flipY);
+            assert.equal(text.flipY, true);
+            el.origionXChange("left", text.origionX);
+            assert.equal(text.origionX, "left");
+            el.origionYChange("top", text.origionY);
+            assert.equal(text.origionY, "top");
+            // toDo el.transformMatrixChange(newValue, text.transformMatrix);
+            //assert.equal(text.transformMatrix, );
+            el.strokeLineStyleChange("Dotted", null);
+            assert.equal(text.strokeDashArray, "2,2");
+            el.strokeLineCapChange("round", text.strokeLineCap);
+            assert.equal(text.strokeLineCap, "round");
+            el.strokeLineJointChange("round", text.strokeLineJoint);
+            assert.equal(text.strokeLineJoint, "round");
+            el.strokeMiterLimitChange(10, text.strokeMiterLimit);
+            assert.equal(text.strokeMiterLimit, 10);
+            el.opacityChange(0.5, text.opacity);
+            assert.equal(text.opacity, 0.5);
+            el.fillRuleChange("evenodd", text.fillRule);
+            assert.equal(text.fillRule, "evenodd");
+            // toDo el.globalCompositeOperationChange(newValue, oldValue);
+            //assert.equal(, );
+            // toDo el.clipToChange(newValue, oldValue);
+            //assert.equal(, );
+            // toDo el.visibleChange(newValue, oldValue);
+            //assert.equal(, );
+            el.skewXChange(1.5, text.skewX);
+            assert.equal(text.skewX, 1.5);
+            el.skewYChange(1, text.skewY);
+            assert.equal(text.skewY, 1);
+            el.alignXChange(1, text.alignX);
+            assert.equal(text.alignX, 1);
+            el.alignYChange(1, text.alignY);
+            assert.equal(text.alignY, 1);
+            el.meetOrSliceChange("slice", text.meetOrSlice);
+            assert.equal(text.meetOrSlice, "slice");
+            el.topChange(100, text.top);
+            assert.equal(text.top, 100);
+            // toDo el.rxChange(newValue, oldValue);
+            //assert.equal(, );
+            // toDo el.ryChange(newValue, oldValue);
+            //assert.equal(, );
+            // toDo el.xChange(newValue, oldValue);
+            //assert.equal(, );
+            // toDo el.yChange(newValue, oldValue);
+            //assert.equal(, );
+        });
+
+        /* object creation
+            regularPolygonPoints(sideCount,radius)
+            starPolygonPoints(spikeCount, outerRadius, innerRadius)
+            createArrowHead(points)
+        */
+
+        /* file operations
+            addFileToCanvas(file, option)
+            downloadCanvasAsPNG(filePrefix)
+            downloadCanvasAsJPEG(filePrefix)
+            downloadCanvasAsJSON(filePrefix)
+            downloadCanvasAsSVG(filePrefix)
+        */
+
+        test('click mode buttons', function() {
+            el.$.textButton.click();
+            assert.equal(el.selectedMenu, 'text');
+            el.$.shapeButton.click();
+            assert.equal(el.selectedMenu, 'shape');
+            el.$.fileButton.click();
+            assert.equal(el.selectedMenu, 'file');
+            el.$.drawButton.click();
+            assert.equal(el.selectedMenu, 'draw');
+            el.$.controlButton.click();
+            assert.equal(el.selectedMenu, 'control');
+        });
+
+        /*
+        test('clicked text button', function(done) {
+            el.addEventListener('click', function(e) {
+                assert.equal(el.selectedMenu, 'text');
+                done();
+            });
+
+            //Polymer.dom(el.root).querySelector('textButton').click();
+            el.$.textButton.click();
+        });
+        */
+        
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "polymer-2-fabric-edit",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#2.0-preview",
+    "fabric.js": "fabric#^1.7.3"
+  },
+  "devDependencies": {
+    "web-component-tester": "*"
+  }
+}
