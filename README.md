@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class=" is-copy-enabled is-u2f-enabled">
-<head prefix="demo: http://thinkerworks.com/polymer2fabricedit/demo#">
+<head prefix="demo: http://thinkerworks.com/demo/polymer-2-fabric-edit#">
 <meta charset='utf-8'>
 
 <title>polymer-fabric-2-edit/readme.md at master · rporter/polmer-fabric-edit</title>
@@ -73,7 +73,7 @@ Usage
 
 Demo
 
-[Demo] (http://thinkerworks.com/demo/polyme-2-fabric-edit)
+[Demo] (http://thinkerworks.com/demo/polymer-2-fabric-edit)
 
 
 Installation
