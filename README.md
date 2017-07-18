@@ -71,10 +71,9 @@ Usage
         Verticle Scaling, Horizontal Skewing, Verticle Skewing, Rotation,
         Flip, Uni Scaling
 
-Demo
+Demo    -   Google Chrome Browser recommended
 
 [Demo] (http://thinkerworks.com/demo/polymer-2-fabric-edit)
-
 
 Installation
 
