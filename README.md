@@ -7,7 +7,7 @@
 
 # Polymer 2 Fabric Edit
 
-## copyright: &copy; 2016 Thinker Works
+## copyright: &copy; 2016, 2017 Thinker Works
 
 ## author: Ralph Porter
 
