@@ -1,6 +1,8 @@
 {
   "name": "polymer-2-fabric-edit",
-  "private": true,
+  "description": "A Canvas editor using polymer 2.0 and fabric.js",
+  "license": "MIT",
+  "author": "Ralph Porter",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "fabric.js": "fabric#^1.6.6"

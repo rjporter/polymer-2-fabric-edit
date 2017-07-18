@@ -7,7 +7,7 @@
 
 # Polymer 2 Fabric Edit
 
-## copyright: &copy; 2016, 2017 Thinker Works
+## copyright: &copy; 2016 Thinker Works
 
 ## author: Ralph Porter
 
@@ -73,7 +73,7 @@ Usage
 
 Demo
 
-[Demo] (http://thinkerworks.com/polymer2fabricedit/demo)
+[Demo] (http://thinkerworks.com/demo/polyme-2-fabric-edit)
 
 
 Installation
@@ -86,7 +86,7 @@ Dependicies
 
 
   fabric-brush          *                            [LICENCE] (https://github.com/tennisonchan/fabric-brush/blob/master/LICENSE)
-  
+
   fabric-brush has been modified for use in this element
   1. renamed spray-brush to sprayer-brush to allow fabrics.js spary-brush to be used.
   2. commented out drip code.
