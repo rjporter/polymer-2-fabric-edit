@@ -81,7 +81,7 @@ Installation
 bower install polymer-2-edit
 
 Dependicies
-  Polymer 2.0-preview   Polymer/polymer#2.0-preview  [LICENCE] (https://github.com/Polymer/polymer/blob/master/LICENSE.txt)
+  Polymer 2.0   Polymer/polymer#2.0  [LICENCE] (https://github.com/Polymer/polymer/blob/master/LICENSE.txt)
   fabric.js             fabric#^1.6.6                [LICENCE] (https://github.com/kangax/fabric.js/blob/master/LICENSE)
 
 
